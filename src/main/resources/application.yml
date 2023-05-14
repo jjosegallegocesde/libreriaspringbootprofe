@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/libreria
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
