@@ -1,5 +1,7 @@
 package com.example.ejemplolibros.entidades;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -29,20 +31,24 @@ public class Libro {
     private Integer calificacion;
 
     @OneToOne(mappedBy = "libro", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private InfoAdicional infoAdicional;
+
+    @Transient
+    private String errorMessage;
 
     public Libro() {
     }
 
-    public Libro(Integer id, Categoria categoria, Editorial editorial, String titulo, String descripcion, Integer calificacion) {
+    public Libro(Integer id, Categoria categoria, Editorial editorial, String titulo, String descripcion, Integer calificacion, InfoAdicional infoAdicional) {
         this.id = id;
         this.categoria = categoria;
         this.editorial = editorial;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.calificacion = calificacion;
+        this.infoAdicional = infoAdicional;
     }
-
 
     public Integer getId() {
         return id;
@@ -90,5 +96,21 @@ public class Libro {
 
     public void setCalificacion(Integer calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public InfoAdicional getInfoAdicional() {
+        return infoAdicional;
+    }
+
+    public void setInfoAdicional(InfoAdicional infoAdicional) {
+        this.infoAdicional = infoAdicional;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

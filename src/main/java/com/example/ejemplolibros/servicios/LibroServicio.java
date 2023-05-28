@@ -1,6 +1,7 @@
 package com.example.ejemplolibros.servicios;
 
 
+import com.example.ejemplolibros.Repositorios.AutorLibroRepositorio;
 import com.example.ejemplolibros.Repositorios.LibroRepositorio;
 import com.example.ejemplolibros.entidades.Editorial;
 import com.example.ejemplolibros.entidades.Libro;
@@ -47,6 +48,23 @@ public class LibroServicio implements ServicioBase<Libro> {
         }
     }
 
+    @Transactional(readOnly = true)
+    public Libro buscarPorNombre(String nombre) throws Exception {
+        try{
+
+            Optional<Libro> libroOptional = libroRepositorio.findByTitulo(nombre);
+            if (libroOptional.isPresent()) {
+                Libro libro = libroOptional.get();
+                return libro;
+            } else {
+                throw new Exception("no existe editorial con ese id");
+            }
+
+        }catch(Exception error){
+            throw new Exception(error.getMessage());
+        }
+    }
+
     @Override
     public Libro registrar(Libro entidad) throws Exception {
         try{
@@ -80,4 +98,6 @@ public class LibroServicio implements ServicioBase<Libro> {
     public boolean borrar(Integer id) throws Exception {
         return false;
     }
+
+
 }

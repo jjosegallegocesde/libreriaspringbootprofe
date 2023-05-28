@@ -14,6 +14,9 @@ public class Categoria {
     @Column(name="nombre")
     private String nombre;
 
+    @Transient
+    private String errorMessage;
+
     public Categoria() {
     }
 
@@ -38,4 +41,11 @@ public class Categoria {
         this.nombre = nombre;
     }
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 }

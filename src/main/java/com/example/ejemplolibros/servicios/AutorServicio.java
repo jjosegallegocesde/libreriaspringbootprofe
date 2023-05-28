@@ -26,7 +26,6 @@ public class AutorServicio implements ServicioBase<Autor> {
 
         }catch(Exception error){
             throw new Exception(error.getMessage());
-
         }
     }
 
@@ -52,6 +51,7 @@ public class AutorServicio implements ServicioBase<Autor> {
     @Transactional(readOnly = false)
     public Autor registrar(Autor autorTabla) throws Exception {
         try{
+
             Autor autorRegistrado = autorRepositorio.save(autorTabla);
             return autorRegistrado;
 

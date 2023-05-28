@@ -11,8 +11,11 @@ public class Autor {
     @Column(name="id")
     private Integer id;
 
-    @Column(name="nombre",nullable = true,length = 50)
+    @Column(name="nombre",nullable = false,length = 50)
     private String nombre;
+
+    @Transient
+    private String errorMessage;
 
     public Autor() {
     }
@@ -36,5 +39,13 @@ public class Autor {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

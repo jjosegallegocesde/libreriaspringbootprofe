@@ -14,6 +14,9 @@ public class Editorial {
     @Column(name="nombre")
     private String nombre;
 
+    @Transient
+    private String errorMessage;
+
     public Editorial() {
     }
 
@@ -36,5 +39,13 @@ public class Editorial {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }
